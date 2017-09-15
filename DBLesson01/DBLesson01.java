@@ -37,14 +37,14 @@ public class DBLesson01 {
 			e.printStackTrace();
 		}
 
-		wordDAO.resistWords(words);
+		int r = wordDAO.resistWords(words);
 
 		/*for(Word wd : words){
 			System.out.println(wd);
 		}*/
 
 		System.out.println(
-				index
+				r
 				+"件登録しました。");
 	}
 }

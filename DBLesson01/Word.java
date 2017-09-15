@@ -1,4 +1,4 @@
-package DBLesson01;;
+package DBLesson01;
 
 public class Word{
 	private String english;
