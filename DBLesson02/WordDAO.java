@@ -65,4 +65,49 @@ public class WordDAO {
 		return result;	// 結果を返す
 	}
 
+	public ArrayList<Word> getWords(){
+		ArrayList<Word> list = new ArrayList<Word>();
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://localhost/test_db?useUnicode=true&characterEncoding=utf8", "root", "");
+
+			if(con != null){
+				System.out.println("DB接続完了（getConnection後）\r\n----");
+			}
+			else{
+				System.out.println("DB接続失敗\r\n----");
+			}
+
+			int i = 0;
+			while(true){
+			String SQL = "SELECT * FROM dictionary WHERE word_id = ?";
+			st = con.prepareStatement(SQL);
+			st.setInt(1, i);
+			list.add();
+			}
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if ( st != null) {
+				try {
+					st.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if ( con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return result;	// 結果を返す
+	}
+
 }
