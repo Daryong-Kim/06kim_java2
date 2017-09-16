@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import DBLesson01.Word;
-
 public class WordDAO {
 
 	Connection con = null;
@@ -66,7 +64,7 @@ public class WordDAO {
 		return result;	// 結果を返す
 	}
 
-	public ArrayList<Word> gWords(){
+	public ArrayList<Word> getWords(){
 		ArrayList<Word> list = new ArrayList<Word>();
 
 		try {
@@ -80,19 +78,14 @@ public class WordDAO {
 				System.out.println("DB接続失敗\r\n----");
 			}
 
-			String count = "SELECT count(word_id) FROM dictionary";
-			st = con.prepareStatement(count);
-			ResultSet rs = st.executeQuery();
-			int num = rs.getInt(0);
-
-			int i = 0;
-			for(i = 0; i < num; i++){
-			String SQL = "SELECT * FROM dictionary WHERE word_id = ?";
+			String SQL = "SELECT * FROM dictionary";
 			st = con.prepareStatement(SQL);
-			st.setInt(1, i);
+			//st.setInt(1, i);
 			ResultSet res = st.executeQuery();
-			String En = res.getString(2);
-			String Jp = res.getString(3);
+
+			while(res.next()){
+			String En = res.getString("english");
+			String Jp = res.getString("japanese");
 			Word wd2 = new Word(En,Jp);
 			list.add(wd2);
 			}
@@ -119,5 +112,4 @@ public class WordDAO {
 		}
 		return list;	// 結果を返す
 	}
-
 }

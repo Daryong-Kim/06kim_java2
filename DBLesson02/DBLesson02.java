@@ -3,9 +3,6 @@ package DBLesson02;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import DBLesson01.Word;
-import DBLesson01.WordDAO;
-
 public class DBLesson02 {
 
 	@SuppressWarnings("resource")
@@ -41,6 +38,13 @@ public class DBLesson02 {
 		int r = wordDAO.resistWords(words);
 
 		System.out.println(r+"件登録しました。");
+
+		ArrayList<Word> getRes = wordDAO.getWords();
+
+		for(Word ww : getRes){
+			System.out.println(ww);
+		}
+		System.out.println("登録されている単語は"+getRes.size()+"件です");
 
 	}
 }
