@@ -30,8 +30,6 @@ public class DBLesson02 {
 			words.add(wd);
 			index++;
 
-			/*wordDAO.setBoth(words.get(index));*/
-			/*System.out.println(words);*/
 			System.out.println("次の単語を入力してください。\"e\"で終了します。");
 		}
 
@@ -42,12 +40,7 @@ public class DBLesson02 {
 
 		int r = wordDAO.resistWords(words);
 
-		/*for(Word wd : words){
-			System.out.println(wd);
-		}*/
+		System.out.println(r+"件登録しました。");
 
-		System.out.println(
-				r
-				+"件登録しました。");
 	}
 }

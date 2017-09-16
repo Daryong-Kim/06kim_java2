@@ -14,6 +14,7 @@ public class WordDAO {
 	Connection con = null;
 	PreparedStatement st = null;
 	ResultSet rs = null;
+	ResultSet res = null;
 
 	public int resistWords(ArrayList<Word> w) {
 		int result = 0;
@@ -65,7 +66,7 @@ public class WordDAO {
 		return result;	// 結果を返す
 	}
 
-	public ArrayList<Word> getWords(){
+	public ArrayList<Word> gWords(){
 		ArrayList<Word> list = new ArrayList<Word>();
 
 		try {
@@ -79,12 +80,21 @@ public class WordDAO {
 				System.out.println("DB接続失敗\r\n----");
 			}
 
+			String count = "SELECT count(word_id) FROM dictionary";
+			st = con.prepareStatement(count);
+			ResultSet rs = st.executeQuery();
+			int num = rs.getInt(0);
+
 			int i = 0;
-			while(true){
+			for(i = 0; i < num; i++){
 			String SQL = "SELECT * FROM dictionary WHERE word_id = ?";
 			st = con.prepareStatement(SQL);
 			st.setInt(1, i);
-			list.add();
+			ResultSet res = st.executeQuery();
+			String En = res.getString(2);
+			String Jp = res.getString(3);
+			Word wd2 = new Word(En,Jp);
+			list.add(wd2);
 			}
 
 		} catch (ClassNotFoundException e) {
@@ -107,7 +117,7 @@ public class WordDAO {
 				}
 			}
 		}
-		return result;	// 結果を返す
+		return list;	// 結果を返す
 	}
 
 }
